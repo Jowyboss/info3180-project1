@@ -4,10 +4,12 @@ Jinja2 Documentation:    https://jinja.palletsprojects.com/
 Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
-
-from app import app
-from flask import render_template, request, redirect, url_for
-
+import os
+from app import app, db
+from flask import render_template, request, redirect, url_for, flash, send_from_directory
+from werkzeug.utils import secure_filename
+from .forms import AddPropertyForm
+from .models import Property
 
 ###
 # Routing for your application.
@@ -23,6 +25,53 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route ('/properties', methods=['GET'])
+def properties():
+    
+    props = db.session.execute(db.select(Property)).scalars()
+
+    return render_template('properties.html', props=props)
+
+@app.route('/properties/create', methods=['GET', 'POST'])
+def newProperty():
+    form = AddPropertyForm()
+
+    if form.validate_on_submit():
+
+        image = form.image.data
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], filename
+        ))
+        
+        prop = Property(
+            form.title.data,
+            form.description.data,
+            form.number_of_rooms.data,
+            form.number_of_bathrooms.data,
+            form.price.data,
+            form.propertyType.data,
+            form.location.data,
+            filename
+        )
+        db.session.add(prop)
+        db.session.commit()
+    
+        flash('Property Added')
+        return redirect(url_for('properties'))
+
+    return render_template('newProperty.html', form=form)
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+    return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']), filename)
+
+@app.route('/properties/<propertyid>')
+def single_property(propertyid):
+    prop = db.session.execute(db.select(Property).filter_by(id=propertyid)).scalar_one()
+
+    return render_template('property.html', prop=prop)
 
 
 ###
