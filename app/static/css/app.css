@@ -1,4 +1,4 @@
-:root{
+:root {
     --bg-green: #50b8a7;
 }
 
@@ -7,14 +7,19 @@ body {
     background-color: #f3f4f5;
 }
 
-p, h4{margin: 0;}
+p, h4 {
+    margin: 0;
+}
 
-h3{color: #000;}
+h3 {
+    color: #000;
+}
 
+nav {
+    background-color: var(--bg-green);
+}
 
-nav{background-color: var(--bg-green);}
-
-main .container{
+main .container {
     padding-top: 50px;
     display: flex;
     flex-direction: column;
@@ -22,66 +27,53 @@ main .container{
     justify-content: center;
 }
 
-.form-item{
+.form-item {
     display: flex;
     flex-direction: column;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
     border-radius: 7px;
     max-width: 600px;
     gap: 20px;
 }
 
-label{
+label {
     font-weight: 500;
 }
 
-input:not([type='file']){
+input:not([type='file']), textarea, select {
     border: 1px solid rgb(199, 199, 199);
-    padding: 5px 10px;
-    border-radius: 6px;
-}
-
-
-textarea{
-    border: 1px solid rgb(199, 199, 199);
-    padding: 5px 10px;
-    border-radius: 6px;
-}
-
-select{
-    border: 1px solid rgb(199, 199, 199);
-    padding: 5px 10px;
+    padding: 8px;
     border-radius: 6px;
     background-color: #fff;
+}
+
+select {
     flex-grow: 1;
     width: 239px;
 }
 
-button[type='submit']{
-
+button[type='submit'] {
     max-width: 40%;
-
 }
 
-.form-ctn{
+.form-ctn {
     display: flex;
     justify-content: space-between;
     gap: 30px;
 }
 
-.errormsg{
+.errormsg {
     color: rgb(250, 70, 70);
     font-weight: 600;
 }
 
-.flash{
-    
+.flash {
     background-color: rgb(33, 33, 33);
     color: white;
     max-width: fit-content;
@@ -91,8 +83,7 @@ button[type='submit']{
     margin: auto;
 }
 
-.flash::after{
-    
+.flash::after {
     content: " ";
     position: absolute;
     top: 0;
@@ -104,14 +95,14 @@ button[type='submit']{
     border-radius: 100%;
 }
 
-.properties{
+.properties {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     grid-gap: 30px; 
     grid-auto-rows: 450px;
 }
 
-.property{
+.property {
     background-color: #fff;
     overflow: hidden;
     overflow-y: auto;
@@ -120,62 +111,54 @@ button[type='submit']{
     position: relative;
 }
 
-.property .info{
-    padding: 20px 20px;
+.property .info {
+    padding: 20px;
     word-wrap: normal;
+    position: relative;
 }
 
-.price{
+.price, .type {
     margin-top: 10px;
     border-radius: 30px;
     padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.price {
     background-color: #60a4f7;
     color: white;
-    max-width: fit-content;
-    font-size: 0.8rem;
 }
 
-.type{
-    margin-top: 10px;
-    border-radius: 30px;
-    padding: 5px 10px;
+.type {
     background-color: #f7be45;
     color: white;
-    max-width: fit-content;
-    font-size: 0.8rem;
-    
 }
 
-.thumbnail {
+.thumbnail, .single_thumbnail {
     width: 100%;
     height: 55%;
     overflow: hidden;
 }
 
-.thumbnail img{
+.thumbnail img, .single_thumbnail img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-
 }
 
-.location{
+.location {
     color: gray;
     font-weight: 300;
     font-size: 0.9rem;
+    margin-top: 5px;
 }
 
-
-h4{
+h4 {
     font-size: 1.2rem;
 }
 
-svg{
-    width: 20px;
-}
-
-.property button{
+.property button, .single_prop button {
     text-align: center;
     color: white;
     background-color: var(--bg-green);
@@ -184,27 +167,19 @@ svg{
     width: 100%;
     position: absolute;
     bottom: 0;
-}
-
-.single_prop button{
-    border: none;
-    background-color: var(--bg-green);
-    border-radius: 5px;
-    padding: 10px 20px;
-    color: #fff;
     max-width: fit-content;
-    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
-.single_prop button:hover{
-   background-color: #1f8a79;    
+.single_prop button:hover {
+    background-color: #1f8a79;    
 }
 
-.bedroom{
-    margin-right: 20px;
+.bedroom {
+    margin-right: 10px;
 }
 
-.single_prop{
+.single_prop {
     background-color: #fff;
     max-width: 900px;
     border-radius: 5px;
@@ -213,31 +188,11 @@ svg{
     display: flex;
     max-height: 400px;
     margin-bottom: 100px;
+}
+
+.email-relator {
+        padding: 20px;
+        word-wrap: normal;
+        position: relative;
     
 }
-
-.single_thumbnail {
-    width: 100%;
-    overflow: hidden;
-}
-
-.single_thumbnail img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-
-}
-
-.single_info:not(h3){
-    padding: 10px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    font-size: 0.85rem;
-    color: #4b5668;
-}
-
-
-
-h1{margin-bottom: 30px;}
